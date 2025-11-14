@@ -352,44 +352,198 @@ class SistemaFrenos {
         this.estadoPastillas = estadoPastillas;
     }
 }
+class RegistroVehicular {
+    // Atributos
+    private String matricula;
+    private String propietario;
+    private String fechaRegistro; // Se usa String para simplificar, idealmente usar Date/LocalDate
 
+    // Constructor
+    public RegistroVehicular(String matricula, String propietario, String fechaRegistro) {
+        this.matricula = matricula;
+        this.propietario = propietario;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    // Método de Negocio: Muestra el estado legal
+    public void mostrarEstadoLegal() {
+        System.out.println("Registro Vehicular: Matrícula " + matricula + ". Propietario actual: " + propietario);
+    }
+
+    // Getters y Setters
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(String propietario) {
+        this.propietario = propietario;
+    }
+
+    public String getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(String fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+}
+
+/**
+ * Clase Mantenimiento: Historial y programación de mantenimientos.
+ */
+class Mantenimiento {
+    // Atributos
+    private String fechaUltimoServicio;
+    private int kilometrajeActual;
+    private String proximoServicioRecomendado;
+
+    // Constructor
+    public Mantenimiento(String fechaUltimoServicio, int kilometrajeActual, String proximoServicioRecomendado) {
+        this.fechaUltimoServicio = fechaUltimoServicio;
+        this.kilometrajeActual = kilometrajeActual;
+        this.proximoServicioRecomendado = proximoServicioRecomendado;
+    }
+
+    // Método de Negocio: Verifica si es tiempo de mantenimiento
+    public void verificarMantenimiento() {
+        System.out.println("Mantenimiento: Último servicio en " + fechaUltimoServicio + ". Próximo: " + proximoServicioRecomendado + ".");
+        if (kilometrajeActual >= 15000) {
+             System.out.println("ALERTA: Es recomendable revisar el vehículo pronto.");
+        }
+    }
+
+    // Getters y Setters
+    public String getFechaUltimoServicio() {
+        return fechaUltimoServicio;
+    }
+
+    public void setFechaUltimoServicio(String fechaUltimoServicio) {
+        this.fechaUltimoServicio = fechaUltimoServicio;
+    }
+
+    public int getKilometrajeActual() {
+        return kilometrajeActual;
+    }
+
+    public void setKilometrajeActual(int kilometrajeActual) {
+        this.kilometrajeActual = kilometrajeActual;
+    }
+
+    public String getProximoServicioRecomendado() {
+        return proximoServicioRecomendado;
+    }
+
+    public void setProximoServicioRecomendado(String proximoServicioRecomendado) {
+        this.proximoServicioRecomendado = proximoServicioRecomendado;
+    }
+}
+
+/**
+ * Clase Sensor: Modela un sensor individual del vehículo.
+ */
+class Sensor {
+    // Atributos
+    private String tipo; // Ejemplo: Velocidad, Temperatura, Presión
+    private String unidad; // Ejemplo: km/h, °C, PSI
+    private double valorActual;
+
+    // Constructor
+    public Sensor(String tipo, String unidad, double valorActual) {
+        this.tipo = tipo;
+        this.unidad = unidad;
+        this.valorActual = valorActual;
+    }
+
+    // Método de Negocio: Reporta la lectura del sensor
+    public double obtenerLectura() {
+        System.out.println("Sensor de " + tipo + " leyendo: " + valorActual + " " + unidad + ".");
+        return valorActual;
+    }
+
+    // Getters y Setters
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+    public double getValorActual() {
+        return valorActual;
+    }
+
+    public void setValorActual(double valorActual) {
+        this.valorActual = valorActual;
+    }
+}
 // Clase principal para la demostración
 public class ComponentesVehiculares {
     public static void main(String[] args) {
-        System.out.println("Ejecutando demostración de Componentes Vehiculares (v1.0)...");
-                    
-        // Creamos un objeto Vehiculo
+        System.out.println("=================================================");
+        System.out.println("= Ejecutando demostración de Componentes Vehiculares (v4.0) =");
+        System.out.println("=================================================");
+        
+        // 1. VEHÍCULO BASE
         Vehiculo vehiculo1 = new Vehiculo("VIN12345", "Toyota", "Supra", 2024);
         vehiculo1.mostrarInfoVehiculo();
         
-        // Creamos un objeto Motor
+        // 2. COMPONENTES PRINCIPALES
+        System.out.println("\n--- 2. Componentes Principales ---");
         Motor motor1 = new Motor("Gasolina Turbo", 2.0, 250);
         motor1.encender();
 
-        // Creamos un objeto Transmision
         Transmision trans1 = new Transmision("Automática", 8, "AWD");
         trans1.cambiarMarcha(3);
-
-        // Creamos un objeto chasis
+        
         Chasis chasis1 = new Chasis("Monocasco", 4.5, 1200.5);
         chasis1.getPesoTotal();
-
-        // Creamos un objeto neumatico
+        
         Neumatico neumaticoDelantero = new Neumatico("Michelin", "245/40 R18", 35.0, true);
         neumaticoDelantero.verificarPresion();
-        
-        // Nuevos Componentes (v3.0 - SistemaElectrico y SistemaFrenos)
-        System.out.println("\n--- Demostración de Sistemas ---");
+
+        // 3. SISTEMAS
+        System.out.println("\n--- 3. Sistemas Secundarios ---");
         
         SistemaElectrico sistemaE = new SistemaElectrico(12.5, 300, true);
         sistemaE.activarLuces(true);
-        System.out.println("¿Tiene luces automáticas? " + sistemaE.isTieneLucesAutomaticas());
 
         SistemaFrenos sistemaF = new SistemaFrenos("Disco Ventilado", true, "Medio");
         sistemaF.frenar();
-        sistemaF.setEstadoPastillas("Bajo");
-        sistemaF.frenar();
+
+        // 4. NUEVOS COMPONENTES (v4.0 - Registro, Mantenimiento, Sensor)
+        System.out.println("\n--- 4. Componentes de Gestión y Monitoreo ---");
+
+        RegistroVehicular reg1 = new RegistroVehicular("ABC-123", "Juan Pérez", "2024-01-15");
+        reg1.mostrarEstadoLegal();
         
-        System.out.println("--- Fin de la demostración v1.0 ---");
+        Mantenimiento mant1 = new Mantenimiento("2024-10-01", 16000, "Cambio de aceite y filtros");
+        mant1.verificarMantenimiento(); // Esto debe generar una alerta.
+        
+        Sensor sensorTemp = new Sensor("Temperatura Aceite", "°C", 95.5);
+        Sensor sensorVel = new Sensor("Velocidad", "km/h", 85.0);
+        
+        sensorTemp.obtenerLectura();
+        sensorVel.obtenerLectura();
+        
+        System.out.println("\n=================================================");
+        System.out.println("= Reto de Modelado POR COMPLETADO (10 Clases) =");
+        System.out.println("=================================================");
     }
-} 
+}
