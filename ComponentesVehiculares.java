@@ -55,6 +55,101 @@
         this.anioFabricacion = anioFabricacion;
     }
 }
+class Motor {
+    // Atributos
+    private String tipo; // Ejemplo: Gasolina, Diesel, Eléctrico
+    private double cilindradaLitros;
+    private int potenciaHP;
+
+    // Constructor
+    public Motor(String tipo, double cilindradaLitros, int potenciaHP) {
+        this.tipo = tipo;
+        this.cilindradaLitros = cilindradaLitros;
+        this.potenciaHP = potenciaHP;
+    }
+
+    // Método de Negocio: Simula el encendido
+    public void encender() {
+        System.out.println("Motor de tipo " + tipo + " encendido. Potencia: " + potenciaHP + " HP.");
+    }
+
+    // Getters y Setters
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public double getCilindradaLitros() {
+        return cilindradaLitros;
+    }
+
+    public void setCilindradaLitros(double cilindradaLitros) {
+        this.cilindradaLitros = cilindradaLitros;
+    }
+
+    public int getPotenciaHP() {
+        return potenciaHP;
+    }
+
+    public void setPotenciaHP(int potenciaHP) {
+        this.potenciaHP = potenciaHP;
+    }
+}
+
+/**
+ * Clase Transmision: Describe el sistema de transmisión del vehículo.
+ */
+class Transmision {
+    // Atributos
+    private String tipo; // Ejemplo: Automática, Manual, CVT
+    private int numeroMarchas;
+    private String traccion; // Ejemplo: FWD, RWD, AWD
+
+    // Constructor
+    public Transmision(String tipo, int numeroMarchas, String traccion) {
+        this.tipo = tipo;
+        this.numeroMarchas = numeroMarchas;
+        this.traccion = traccion;
+    }
+
+    // Método de Negocio: Simula un cambio de marcha
+    public void cambiarMarcha(int marcha) {
+        if (marcha > 0 && marcha <= numeroMarchas) {
+            System.out.println("Transmisión " + tipo + " en marcha " + marcha + ".");
+        } else {
+            System.out.println("Marcha inválida.");
+        }
+    }
+
+    // Getters y Setters
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getNumeroMarchas() {
+        return numeroMarchas;
+    }
+
+    public void setNumeroMarchas(int numeroMarchas) {
+        this.numeroMarchas = numeroMarchas;
+    }
+
+    public String getTraccion() {
+        return traccion;
+    }
+
+    public void setTraccion(String traccion) {
+        this.traccion = traccion;
+    }
+}
+
 // Clase principal para la demostración
 public class ComponentesVehiculares {
     public static void main(String[] args) {
@@ -63,6 +158,15 @@ public class ComponentesVehiculares {
         // Creamos un objeto Vehiculo
         Vehiculo vehiculo1 = new Vehiculo("VIN12345", "Toyota", "Supra", 2024);
         vehiculo1.mostrarInfoVehiculo();
+        
+        // Creamos un objeto Motor
+        Motor motor1 = new Motor("Gasolina Turbo", 2.0, 250);
+        motor1.encender();
+
+        // Creamos un objeto Transmision
+        Transmision trans1 = new Transmision("Automática", 8, "AWD");
+        trans1.cambiarMarcha(3);
+
         
         System.out.println("--- Fin de la demostración v1.0 ---");
     }
